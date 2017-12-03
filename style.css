@@ -1,10 +1,47 @@
-body {
+* {
     margin: 0;
     padding: 0;
+}
+
+body {
     background-color: #bdc3c7;
 }
 
 canvas {
-    width: 100%;
     position: fixed;
+    width: 100%;
+}
+
+#press-a2z {
+    position: fixed;
+    top: 15%;
+    /*center*/
+    text-align: center;
+    width: 80%;
+    margin-left: -40%;
+    left: 50%;
+}
+
+#press-a2z p {
+    font-family: 'Russo One', cursive;
+    font-size: 40px;
+}
+
+#github-link {
+    position: fixed;
+    top: 85%;
+    /*center*/
+    text-align: center;
+    width: 80%;
+    margin-left: -40%;
+    left: 50%;
+}
+
+#github-link .fa {
+    font-size: 40px;
+    color: black;
+}
+
+#github-link .fa:hover {
+    opacity: 0.5;
 }

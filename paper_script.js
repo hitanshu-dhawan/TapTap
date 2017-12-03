@@ -1,6 +1,6 @@
 var keyData = {
     a: {
-        shape: null,
+        _shape: null,
         draw: function() {
         },
         animate: function() {
@@ -10,7 +10,7 @@ var keyData = {
         })
     },
     b: {
-        shape: null,
+        _shape: null,
         draw: function() {
         },
         animate: function() {
@@ -20,7 +20,7 @@ var keyData = {
         })
     },
     c: {
-        shape: null,
+        _shape: null,
         draw: function() {
         },
         animate: function() {
@@ -30,7 +30,7 @@ var keyData = {
         })
     },
     d: {
-        shape: null,
+        _shape: null,
         draw: function() {
         },
         animate: function() {
@@ -40,7 +40,7 @@ var keyData = {
         })
     },
     e: {
-        shape: null,
+        _shape: null,
         draw: function() {
         },
         animate: function() {
@@ -50,44 +50,44 @@ var keyData = {
         })
     },
     f: {
-        shape1: null,
-        shape2: null,
-        shape3: null,
-        point_x: null,
-        growing: null,
+        _shape1: null,
+        _shape2: null,
+        _shape3: null,
+        _point_x: null,
+        _growing: null,
         draw: function() {
             var limit = 500;
             keyData.f.point_x = view.center.x+limit;
             keyData.f.growing = true;
-            if(keyData.f.shape1) keyData.f.shape1.remove();
-            if(keyData.f.shape2) keyData.f.shape2.remove();
-            if(keyData.f.shape3) keyData.f.shape3.remove();
-            keyData.f.shape1 = new Path.Line();
-            keyData.f.shape2 = new Path.Line();
-            keyData.f.shape3 = new Path.Line();
+            if(keyData.f._shape1) keyData.f._shape1.remove();
+            if(keyData.f._shape2) keyData.f._shape2.remove();
+            if(keyData.f._shape3) keyData.f._shape3.remove();
+            keyData.f._shape1 = new Path.Line();
+            keyData.f._shape2 = new Path.Line();
+            keyData.f._shape3 = new Path.Line();
         },
         animate: function() {
             var limit = 500;
             var speed = 100;
             var spacing = 90;
-            if(keyData.f.shape1 && keyData.f.shape2 && keyData.f.shape3) {
-                keyData.f.shape1.remove();
-                keyData.f.shape2.remove();
-                keyData.f.shape3.remove();
+            if(keyData.f._shape1 && keyData.f._shape2 && keyData.f._shape3) {
+                keyData.f._shape1.remove();
+                keyData.f._shape2.remove();
+                keyData.f._shape3.remove();
                 if(keyData.f.growing) {
-                    keyData.f.shape1 = new Path.Line({
+                    keyData.f._shape1 = new Path.Line({
                         from: [keyData.f.point_x,view.center.y-spacing],
                         to: [view.center.x+limit,view.center.y-spacing],
                         strokeColor: "white",
                         strokeWidth: 60
                     });
-                    keyData.f.shape2 = new Path.Line({
+                    keyData.f._shape2 = new Path.Line({
                         from: [keyData.f.point_x,view.center.y],
                         to: [view.center.x+limit,view.center.y],
                         strokeColor: "white",
                         strokeWidth: 60
                     });
-                    keyData.f.shape3 = new Path.Line({
+                    keyData.f._shape3 = new Path.Line({
                         from: [keyData.f.point_x,view.center.y+spacing],
                         to: [view.center.x+limit,view.center.y+spacing],
                         strokeColor: "white",
@@ -100,19 +100,19 @@ var keyData = {
                     }
                 }
                 else {
-                    keyData.f.shape1 = new Path.Line({
+                    keyData.f._shape1 = new Path.Line({
                         from: [view.center.x-limit,view.center.y-spacing],
                         to: [keyData.f.point_x,view.center.y-spacing],
                         strokeColor: "white",
                         strokeWidth: 60
                     });
-                    keyData.f.shape2 = new Path.Line({
+                    keyData.f._shape2 = new Path.Line({
                         from: [view.center.x-limit,view.center.y],
                         to: [keyData.f.point_x,view.center.y],
                         strokeColor: "white",
                         strokeWidth: 60
                     });
-                    keyData.f.shape3 = new Path.Line({
+                    keyData.f._shape3 = new Path.Line({
                         from: [view.center.x-limit,view.center.y+spacing],
                         to: [keyData.f.point_x,view.center.y+spacing],
                         strokeColor: "white",
@@ -120,12 +120,12 @@ var keyData = {
                     });
                     keyData.f.point_x -= speed;
                     if(keyData.f.point_x <= view.center.x-limit) {
-                        keyData.f.shape1.remove();
-                        keyData.f.shape2.remove();
-                        keyData.f.shape3.remove();
-                        keyData.f.shape1 = null;
-                        keyData.f.shape2 = null;
-                        keyData.f.shape3 = null;
+                        keyData.f._shape1.remove();
+                        keyData.f._shape2.remove();
+                        keyData.f._shape3.remove();
+                        keyData.f._shape1 = null;
+                        keyData.f._shape2 = null;
+                        keyData.f._shape3 = null;
                     }
                 }
             }
@@ -135,7 +135,7 @@ var keyData = {
         })
     },
     g: {
-        shape: null,
+        _shape: null,
         draw: function() {
         },
         animate: function() {
@@ -145,7 +145,7 @@ var keyData = {
         })
     },
     h: {
-        shape: null,
+        _shape: null,
         draw: function() {
         },
         animate: function() {
@@ -155,7 +155,7 @@ var keyData = {
         })
     },
     i: {
-        shape: null,
+        _shape: null,
         draw: function() {
         },
         animate: function() {
@@ -165,10 +165,10 @@ var keyData = {
         })
     },
     j: {
-        shape: null,
+        _shape: null,
         draw: function() {
-            if(keyData.j.shape) keyData.j.shape.remove();
-            keyData.j.shape = new Path.RegularPolygon({
+            if(keyData.j._shape) keyData.j._shape.remove();
+            keyData.j._shape = new Path.RegularPolygon({
                 center: view.center,
                 sides: 4,
                 radius: 1,
@@ -177,10 +177,10 @@ var keyData = {
             });
         },
         animate: function() {
-            if(keyData.j.shape) {
-                keyData.j.shape.rotate(-5);
-                keyData.j.shape.scale(1.1);
-                keyData.j.shape.opacity *= 0.99;
+            if(keyData.j._shape) {
+                keyData.j._shape.rotate(-5);
+                keyData.j._shape.scale(1.1);
+                keyData.j._shape.opacity *= 0.99;
             }
         },
         sound: new Howl({
@@ -188,7 +188,7 @@ var keyData = {
         })
     },
     k: {
-        shape: null,
+        _shape: null,
         draw: function() {
         },
         animate: function() {
@@ -198,7 +198,7 @@ var keyData = {
         })
     },
     l: {
-        shape: null,
+        _shape: null,
         draw: function() {
         },
         animate: function() {
@@ -208,10 +208,10 @@ var keyData = {
         })
     },
     m: {
-        shape: null,
+        _shape: null,
         draw: function() {
-            if(keyData.m.shape) keyData.m.shape.remove();
-            keyData.m.shape = new Path.RegularPolygon({
+            if(keyData.m._shape) keyData.m._shape.remove();
+            keyData.m._shape = new Path.RegularPolygon({
                 center: view.center,
                 sides: 5,
                 radius: 1,
@@ -220,10 +220,10 @@ var keyData = {
             });
         },
         animate: function() {
-            if(keyData.m.shape) {
-                keyData.m.shape.rotate(5);
-                keyData.m.shape.scale(1.1);
-                keyData.m.shape.opacity *= 0.99;
+            if(keyData.m._shape) {
+                keyData.m._shape.rotate(5);
+                keyData.m._shape.scale(1.1);
+                keyData.m._shape.opacity *= 0.99;
             }
         },
         sound: new Howl({
@@ -231,7 +231,7 @@ var keyData = {
         })
     },
     n: {
-        shape: null,
+        _shape: null,
         draw: function() {
         },
         animate: function() {
@@ -241,7 +241,7 @@ var keyData = {
         })
     },
     o: {
-        shape: null,
+        _shape: null,
         draw: function() {
         },
         animate: function() {
@@ -251,7 +251,7 @@ var keyData = {
         })
     },
     p: {
-        shape: null,
+        _shape: null,
         draw: function() {
         },
         animate: function() {
@@ -261,7 +261,7 @@ var keyData = {
         })
     },
     q: {
-        shape: null,
+        _shape: null,
         draw: function() {
         },
         animate: function() {
@@ -271,27 +271,27 @@ var keyData = {
         })
     },
     r: {
-        shape: null,
-        point_x: null,
-        growing: null,
+        _shape: null,
+        _point_x: null,
+        _growing: null,
         draw: function() {
             var limit = 500;
             keyData.r.point_x = view.center.x-limit;
             keyData.r.growing = true;
-            if(keyData.r.shape) keyData.r.shape.remove();
-            keyData.r.shape = new Path.Line();
+            if(keyData.r._shape) keyData.r._shape.remove();
+            keyData.r._shape = new Path.Line();
         },
         animate: function() {
             var limit = 500;
             var speed = 100;
-            if(keyData.r.shape) {
-                keyData.r.shape.remove();
+            if(keyData.r._shape) {
+                keyData.r._shape.remove();
                 if(keyData.r.growing) {
-                    keyData.r.shape = new Path.Line({
+                    keyData.r._shape = new Path.Line({
                         from: [view.center.x-limit,view.center.y],
                         to: [keyData.r.point_x,view.center.y],
                         strokeColor: "white",
-                        strokeWidth: 200
+                        strokeWidth: 100
                     });
                     keyData.r.point_x += speed;
                     if(keyData.r.point_x >= view.center.x+limit) {
@@ -300,16 +300,16 @@ var keyData = {
                     }
                 }
                 else {
-                    keyData.r.shape = new Path.Line({
+                    keyData.r._shape = new Path.Line({
                         from: [keyData.r.point_x,view.center.y],
                         to: [view.center.x+limit,view.center.y],
                         strokeColor: "white",
-                        strokeWidth: 200
+                        strokeWidth: 100
                     });
                     keyData.r.point_x += speed;
                     if(keyData.r.point_x >= view.center.x+limit) {
-                        keyData.r.shape.remove();
-                        keyData.r.shape = null;
+                        keyData.r._shape.remove();
+                        keyData.r._shape = null;
                     }
                 }
             }
@@ -319,7 +319,7 @@ var keyData = {
         })
     },
     s: {
-        shape: null,
+        _shape: null,
         draw: function() {
         },
         animate: function() {
@@ -329,7 +329,7 @@ var keyData = {
         })
     },
     t: {
-        shape: null,
+        _shape: null,
         draw: function() {
         },
         animate: function() {
@@ -339,10 +339,10 @@ var keyData = {
         })
     },
     u: {
-        shape: null,
+        _shape: null,
         draw: function() {
-            if(keyData.u.shape) keyData.u.shape.remove();
-            keyData.u.shape = new Path.RegularPolygon({
+            if(keyData.u._shape) keyData.u._shape.remove();
+            keyData.u._shape = new Path.RegularPolygon({
                 center: view.center,
                 sides: 3,
                 radius: 1,
@@ -351,75 +351,75 @@ var keyData = {
             });
         },
         animate: function() {
-            if(keyData.u.shape) {
-                keyData.u.shape.rotate(5);
-                keyData.u.shape.scale(1.1);
-                keyData.u.shape.opacity *= 0.99;
+            if(keyData.u._shape) {
+                keyData.u._shape.rotate(5);
+                keyData.u._shape.scale(1.1);
+                keyData.u._shape.opacity *= 0.99;
             }
         },
         sound: new Howl({
             src: ['sounds/prism-1.mp3']
         })
     },
-    v: { //TODO
-        shape1: null,
-        shape2: null,
-        shape3: null,
-        shape4: null,
-        shape5: null,
-        point_x: null,
-        growing: null,
+    v: {
+        _shape1: null,
+        _shape2: null,
+        _shape3: null,
+        _shape4: null,
+        _shape5: null,
+        _point_x: null,
+        _growing: null,
         draw: function() {
             var limit = 500;
             keyData.v.point_x = view.center.x-limit;
             keyData.v.growing = true;
-            if(keyData.v.shape1) keyData.v.shape1.remove();
-            if(keyData.v.shape2) keyData.v.shape2.remove();
-            if(keyData.v.shape3) keyData.v.shape3.remove();
-            if(keyData.v.shape4) keyData.v.shape4.remove();
-            if(keyData.v.shape5) keyData.v.shape5.remove();
-            keyData.v.shape1 = new Path.Line();
-            keyData.v.shape2 = new Path.Line();
-            keyData.v.shape3 = new Path.Line();
-            keyData.v.shape4 = new Path.Line();
-            keyData.v.shape5 = new Path.Line();
+            if(keyData.v._shape1) keyData.v._shape1.remove();
+            if(keyData.v._shape2) keyData.v._shape2.remove();
+            if(keyData.v._shape3) keyData.v._shape3.remove();
+            if(keyData.v._shape4) keyData.v._shape4.remove();
+            if(keyData.v._shape5) keyData.v._shape5.remove();
+            keyData.v._shape1 = new Path.Line();
+            keyData.v._shape2 = new Path.Line();
+            keyData.v._shape3 = new Path.Line();
+            keyData.v._shape4 = new Path.Line();
+            keyData.v._shape5 = new Path.Line();
         },
         animate: function() {
             var limit = 500;
             var speed = 100;
             var spacing = 80;
-            if(keyData.v.shape1 && keyData.v.shape2 && keyData.v.shape3 && keyData.v.shape4 && keyData.v.shape5) {
-                keyData.v.shape1.remove();
-                keyData.v.shape2.remove();
-                keyData.v.shape3.remove();
-                keyData.v.shape4.remove();
-                keyData.v.shape5.remove();
+            if(keyData.v._shape1 && keyData.v._shape2 && keyData.v._shape3 && keyData.v._shape4 && keyData.v._shape5) {
+                keyData.v._shape1.remove();
+                keyData.v._shape2.remove();
+                keyData.v._shape3.remove();
+                keyData.v._shape4.remove();
+                keyData.v._shape5.remove();
                 if(keyData.v.growing) {
-                    keyData.v.shape1 = new Path.Line({
+                    keyData.v._shape1 = new Path.Line({
                         from: [view.center.x-limit,view.center.y-spacing*2],
                         to: [keyData.v.point_x,view.center.y-spacing*2],
                         strokeColor: "white",
                         strokeWidth: 50
                     });
-                    keyData.v.shape2 = new Path.Line({
+                    keyData.v._shape2 = new Path.Line({
                         from: [view.center.x-limit,view.center.y-spacing],
                         to: [keyData.v.point_x,view.center.y-spacing],
                         strokeColor: "white",
                         strokeWidth: 50
                     });
-                    keyData.v.shape3 = new Path.Line({
+                    keyData.v._shape3 = new Path.Line({
                         from: [view.center.x-limit,view.center.y],
                         to: [keyData.v.point_x,view.center.y],
                         strokeColor: "white",
                         strokeWidth: 50
                     });
-                    keyData.v.shape4 = new Path.Line({
+                    keyData.v._shape4 = new Path.Line({
                         from: [view.center.x-limit,view.center.y+spacing],
                         to: [keyData.v.point_x,view.center.y+spacing],
                         strokeColor: "white",
                         strokeWidth: 50
                     });
-                    keyData.v.shape5 = new Path.Line({
+                    keyData.v._shape5 = new Path.Line({
                         from: [view.center.x-limit,view.center.y+spacing*2],
                         to: [keyData.v.point_x,view.center.y+spacing*2],
                         strokeColor: "white",
@@ -432,31 +432,31 @@ var keyData = {
                     }
                 }
                 else {
-                    keyData.v.shape1 = new Path.Line({
+                    keyData.v._shape1 = new Path.Line({
                         from: [keyData.v.point_x,view.center.y-spacing*2],
                         to: [view.center.x+limit,view.center.y-spacing*2],
                         strokeColor: "white",
                         strokeWidth: 50
                     });
-                    keyData.v.shape2 = new Path.Line({
+                    keyData.v._shape2 = new Path.Line({
                         from: [keyData.v.point_x,view.center.y-spacing],
                         to: [view.center.x+limit,view.center.y-spacing],
                         strokeColor: "white",
                         strokeWidth: 50
                     });
-                    keyData.v.shape3 = new Path.Line({
+                    keyData.v._shape3 = new Path.Line({
                         from: [keyData.v.point_x,view.center.y],
                         to: [view.center.x+limit,view.center.y],
                         strokeColor: "white",
                         strokeWidth: 50
                     });
-                    keyData.v.shape4 = new Path.Line({
+                    keyData.v._shape4 = new Path.Line({
                         from: [keyData.v.point_x,view.center.y+spacing],
                         to: [view.center.x+limit,view.center.y+spacing],
                         strokeColor: "white",
                         strokeWidth: 50
                     });
-                    keyData.v.shape5 = new Path.Line({
+                    keyData.v._shape5 = new Path.Line({
                         from: [keyData.v.point_x,view.center.y+spacing*2],
                         to: [view.center.x+limit,view.center.y+spacing*2],
                         strokeColor: "white",
@@ -464,16 +464,16 @@ var keyData = {
                     });
                     keyData.v.point_x += speed;
                     if(keyData.v.point_x >= view.center.x+limit) {
-                        keyData.v.shape1.remove();
-                        keyData.v.shape2.remove();
-                        keyData.v.shape3.remove();
-                        keyData.v.shape4.remove();
-                        keyData.v.shape5.remove();
-                        keyData.v.shape1 = null;
-                        keyData.v.shape2 = null;
-                        keyData.v.shape3 = null;
-                        keyData.v.shape4 = null;
-                        keyData.v.shape5 = null;
+                        keyData.v._shape1.remove();
+                        keyData.v._shape2.remove();
+                        keyData.v._shape3.remove();
+                        keyData.v._shape4.remove();
+                        keyData.v._shape5.remove();
+                        keyData.v._shape1 = null;
+                        keyData.v._shape2 = null;
+                        keyData.v._shape3 = null;
+                        keyData.v._shape4 = null;
+                        keyData.v._shape5 = null;
                     }
                 }
             }
@@ -483,7 +483,7 @@ var keyData = {
         })
     },
     w: {
-        shape: null,
+        _shape: null,
         draw: function() {
         },
         animate: function() {
@@ -493,7 +493,7 @@ var keyData = {
         })
     },
     x: {
-        shape: null,
+        _shape: null,
         draw: function() {
         },
         animate: function() {
@@ -503,7 +503,7 @@ var keyData = {
         })
     },
     y: {
-        shape: null,
+        _shape: null,
         draw: function() {
         },
         animate: function() {
@@ -513,7 +513,7 @@ var keyData = {
         })
     },
     z: {
-        shape: null,
+        _shape: null,
         draw: function() {
         },
         animate: function() {
