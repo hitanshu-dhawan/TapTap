@@ -12,6 +12,10 @@ canvas {
     width: 100%;
 }
 
+.hidden {
+    display: none;
+}
+
 #press-a2z {
     position: fixed;
     top: 15%;

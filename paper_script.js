@@ -524,9 +524,27 @@ var keyData = {
     }
 };
 
+var pressAtoZDiv = document.getElementById("press-a2z");
+var githubDiv = document.getElementById("github-link");
+
+var divsTimerID = null;
+var divsTimeOut = 10*1000; // 10 secs
+
+function makeDivsInvisible() {
+    pressAtoZDiv.classList.add("hidden");
+    githubDiv.classList.add("hidden");
+}
+
+function makeDivsVisible() {
+    pressAtoZDiv.classList.remove("hidden");
+    githubDiv.classList.remove("hidden");
+}
 
 function onKeyDown(event) {
     if(keyData[event.key]) {
+        makeDivsInvisible();
+        if(divsTimerID) clearTimeout(divsTimerID);
+        divsTimerID = setTimeout(makeDivsVisible,divsTimeOut);
         keyData[event.key].draw();
         keyData[event.key].sound.play();
     }
