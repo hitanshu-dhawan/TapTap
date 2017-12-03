@@ -57,8 +57,8 @@ var keyData = {
         _growing: null,
         draw: function() {
             var limit = 500;
-            keyData.f.point_x = view.center.x+limit;
-            keyData.f.growing = true;
+            keyData.f._point_x = view.center.x+limit;
+            keyData.f._growing = true;
             if(keyData.f._shape1) keyData.f._shape1.remove();
             if(keyData.f._shape2) keyData.f._shape2.remove();
             if(keyData.f._shape3) keyData.f._shape3.remove();
@@ -74,52 +74,52 @@ var keyData = {
                 keyData.f._shape1.remove();
                 keyData.f._shape2.remove();
                 keyData.f._shape3.remove();
-                if(keyData.f.growing) {
+                if(keyData.f._growing) {
                     keyData.f._shape1 = new Path.Line({
-                        from: [keyData.f.point_x,view.center.y-spacing],
+                        from: [keyData.f._point_x,view.center.y-spacing],
                         to: [view.center.x+limit,view.center.y-spacing],
                         strokeColor: "white",
                         strokeWidth: 60
                     });
                     keyData.f._shape2 = new Path.Line({
-                        from: [keyData.f.point_x,view.center.y],
+                        from: [keyData.f._point_x,view.center.y],
                         to: [view.center.x+limit,view.center.y],
                         strokeColor: "white",
                         strokeWidth: 60
                     });
                     keyData.f._shape3 = new Path.Line({
-                        from: [keyData.f.point_x,view.center.y+spacing],
+                        from: [keyData.f._point_x,view.center.y+spacing],
                         to: [view.center.x+limit,view.center.y+spacing],
                         strokeColor: "white",
                         strokeWidth: 60
                     });
-                    keyData.f.point_x -= speed;
-                    if(keyData.f.point_x <= view.center.x-limit) {
-                        keyData.f.growing = false;
-                        keyData.f.point_x = view.center.x+limit;
+                    keyData.f._point_x -= speed;
+                    if(keyData.f._point_x <= view.center.x-limit) {
+                        keyData.f._growing = false;
+                        keyData.f._point_x = view.center.x+limit;
                     }
                 }
                 else {
                     keyData.f._shape1 = new Path.Line({
                         from: [view.center.x-limit,view.center.y-spacing],
-                        to: [keyData.f.point_x,view.center.y-spacing],
+                        to: [keyData.f._point_x,view.center.y-spacing],
                         strokeColor: "white",
                         strokeWidth: 60
                     });
                     keyData.f._shape2 = new Path.Line({
                         from: [view.center.x-limit,view.center.y],
-                        to: [keyData.f.point_x,view.center.y],
+                        to: [keyData.f._point_x,view.center.y],
                         strokeColor: "white",
                         strokeWidth: 60
                     });
                     keyData.f._shape3 = new Path.Line({
                         from: [view.center.x-limit,view.center.y+spacing],
-                        to: [keyData.f.point_x,view.center.y+spacing],
+                        to: [keyData.f._point_x,view.center.y+spacing],
                         strokeColor: "white",
                         strokeWidth: 60
                     });
-                    keyData.f.point_x -= speed;
-                    if(keyData.f.point_x <= view.center.x-limit) {
+                    keyData.f._point_x -= speed;
+                    if(keyData.f._point_x <= view.center.x-limit) {
                         keyData.f._shape1.remove();
                         keyData.f._shape2.remove();
                         keyData.f._shape3.remove();
@@ -276,8 +276,8 @@ var keyData = {
         _growing: null,
         draw: function() {
             var limit = 500;
-            keyData.r.point_x = view.center.x-limit;
-            keyData.r.growing = true;
+            keyData.r._point_x = view.center.x-limit;
+            keyData.r._growing = true;
             if(keyData.r._shape) keyData.r._shape.remove();
             keyData.r._shape = new Path.Line();
         },
@@ -286,28 +286,28 @@ var keyData = {
             var speed = 100;
             if(keyData.r._shape) {
                 keyData.r._shape.remove();
-                if(keyData.r.growing) {
+                if(keyData.r._growing) {
                     keyData.r._shape = new Path.Line({
                         from: [view.center.x-limit,view.center.y],
-                        to: [keyData.r.point_x,view.center.y],
+                        to: [keyData.r._point_x,view.center.y],
                         strokeColor: "white",
                         strokeWidth: 100
                     });
-                    keyData.r.point_x += speed;
-                    if(keyData.r.point_x >= view.center.x+limit) {
-                        keyData.r.growing = false;
-                        keyData.r.point_x = view.center.x-limit;
+                    keyData.r._point_x += speed;
+                    if(keyData.r._point_x >= view.center.x+limit) {
+                        keyData.r._growing = false;
+                        keyData.r._point_x = view.center.x-limit;
                     }
                 }
                 else {
                     keyData.r._shape = new Path.Line({
-                        from: [keyData.r.point_x,view.center.y],
+                        from: [keyData.r._point_x,view.center.y],
                         to: [view.center.x+limit,view.center.y],
                         strokeColor: "white",
                         strokeWidth: 100
                     });
-                    keyData.r.point_x += speed;
-                    if(keyData.r.point_x >= view.center.x+limit) {
+                    keyData.r._point_x += speed;
+                    if(keyData.r._point_x >= view.center.x+limit) {
                         keyData.r._shape.remove();
                         keyData.r._shape = null;
                     }
@@ -320,9 +320,48 @@ var keyData = {
     },
     s: {
         _shape: null,
+        _point_y: null,
+        _growing: null,
         draw: function() {
+            keyData.s._point_y = 0;
+            keyData.s._growing = true;
+            if(keyData.s._shape) keyData.s._shape.remove();
+            keyData.s._shape = new Path.Line();
         },
         animate: function() {
+            var speed = 35;
+            var pause = 700;
+            if(keyData.s._shape) {
+                keyData.s._shape.remove();
+                if(keyData.s._growing) {
+                    keyData.s._shape = new Path.Line({
+                        from: [view.center.x,0],
+                        to: [view.center.x,keyData.s._point_y],
+                        strokeColor: "#c5eff7",
+                        strokeWidth: view.size.width
+                    });
+                    keyData.s._shape.sendToBack();
+                    keyData.s._point_y += speed;
+                    if(keyData.s._point_y >= view.size.height+pause) {
+                        keyData.s._growing = false;
+                        keyData.s._point_y = 0;
+                    }
+                }
+                else {
+                    keyData.s._shape = new Path.Line({
+                        from: [view.center.x,keyData.s._point_y],
+                        to: [view.center.x,view.size.height],
+                        strokeColor: "#c5eff7",
+                        strokeWidth: view.size.width
+                    });
+                    keyData.s._shape.sendToBack();
+                    keyData.s._point_y += speed;
+                    if(keyData.s._point_y >= view.size.height) {
+                        keyData.s._shape.remove();
+                        keyData.s._shape = null;
+                    }
+                }
+            }
         },
         sound: new Howl({
             src: ['sounds/veil.mp3']
@@ -371,8 +410,8 @@ var keyData = {
         _growing: null,
         draw: function() {
             var limit = 500;
-            keyData.v.point_x = view.center.x-limit;
-            keyData.v.growing = true;
+            keyData.v._point_x = view.center.x-limit;
+            keyData.v._growing = true;
             if(keyData.v._shape1) keyData.v._shape1.remove();
             if(keyData.v._shape2) keyData.v._shape2.remove();
             if(keyData.v._shape3) keyData.v._shape3.remove();
@@ -394,76 +433,76 @@ var keyData = {
                 keyData.v._shape3.remove();
                 keyData.v._shape4.remove();
                 keyData.v._shape5.remove();
-                if(keyData.v.growing) {
+                if(keyData.v._growing) {
                     keyData.v._shape1 = new Path.Line({
                         from: [view.center.x-limit,view.center.y-spacing*2],
-                        to: [keyData.v.point_x,view.center.y-spacing*2],
+                        to: [keyData.v._point_x,view.center.y-spacing*2],
                         strokeColor: "white",
                         strokeWidth: 50
                     });
                     keyData.v._shape2 = new Path.Line({
                         from: [view.center.x-limit,view.center.y-spacing],
-                        to: [keyData.v.point_x,view.center.y-spacing],
+                        to: [keyData.v._point_x,view.center.y-spacing],
                         strokeColor: "white",
                         strokeWidth: 50
                     });
                     keyData.v._shape3 = new Path.Line({
                         from: [view.center.x-limit,view.center.y],
-                        to: [keyData.v.point_x,view.center.y],
+                        to: [keyData.v._point_x,view.center.y],
                         strokeColor: "white",
                         strokeWidth: 50
                     });
                     keyData.v._shape4 = new Path.Line({
                         from: [view.center.x-limit,view.center.y+spacing],
-                        to: [keyData.v.point_x,view.center.y+spacing],
+                        to: [keyData.v._point_x,view.center.y+spacing],
                         strokeColor: "white",
                         strokeWidth: 50
                     });
                     keyData.v._shape5 = new Path.Line({
                         from: [view.center.x-limit,view.center.y+spacing*2],
-                        to: [keyData.v.point_x,view.center.y+spacing*2],
+                        to: [keyData.v._point_x,view.center.y+spacing*2],
                         strokeColor: "white",
                         strokeWidth: 50
                     });
-                    keyData.v.point_x += speed;
-                    if(keyData.v.point_x >= view.center.x+limit) {
-                        keyData.v.growing = false;
-                        keyData.v.point_x = view.center.x-limit;
+                    keyData.v._point_x += speed;
+                    if(keyData.v._point_x >= view.center.x+limit) {
+                        keyData.v._growing = false;
+                        keyData.v._point_x = view.center.x-limit;
                     }
                 }
                 else {
                     keyData.v._shape1 = new Path.Line({
-                        from: [keyData.v.point_x,view.center.y-spacing*2],
+                        from: [keyData.v._point_x,view.center.y-spacing*2],
                         to: [view.center.x+limit,view.center.y-spacing*2],
                         strokeColor: "white",
                         strokeWidth: 50
                     });
                     keyData.v._shape2 = new Path.Line({
-                        from: [keyData.v.point_x,view.center.y-spacing],
+                        from: [keyData.v._point_x,view.center.y-spacing],
                         to: [view.center.x+limit,view.center.y-spacing],
                         strokeColor: "white",
                         strokeWidth: 50
                     });
                     keyData.v._shape3 = new Path.Line({
-                        from: [keyData.v.point_x,view.center.y],
+                        from: [keyData.v._point_x,view.center.y],
                         to: [view.center.x+limit,view.center.y],
                         strokeColor: "white",
                         strokeWidth: 50
                     });
                     keyData.v._shape4 = new Path.Line({
-                        from: [keyData.v.point_x,view.center.y+spacing],
+                        from: [keyData.v._point_x,view.center.y+spacing],
                         to: [view.center.x+limit,view.center.y+spacing],
                         strokeColor: "white",
                         strokeWidth: 50
                     });
                     keyData.v._shape5 = new Path.Line({
-                        from: [keyData.v.point_x,view.center.y+spacing*2],
+                        from: [keyData.v._point_x,view.center.y+spacing*2],
                         to: [view.center.x+limit,view.center.y+spacing*2],
                         strokeColor: "white",
                         strokeWidth: 50
                     });
-                    keyData.v.point_x += speed;
-                    if(keyData.v.point_x >= view.center.x+limit) {
+                    keyData.v._point_x += speed;
+                    if(keyData.v._point_x >= view.center.x+limit) {
                         keyData.v._shape1.remove();
                         keyData.v._shape2.remove();
                         keyData.v._shape3.remove();
@@ -494,9 +533,48 @@ var keyData = {
     },
     x: {
         _shape: null,
+        _point_x: null,
+        _growing: null,
         draw: function() {
+            keyData.x._point_x = 0;
+            keyData.x._growing = true;
+            if(keyData.x._shape) keyData.x._shape.remove();
+            keyData.x._shape = new Path.Line();
         },
         animate: function() {
+            var speed = 50;
+            var pause = 900;
+            if(keyData.x._shape) {
+                keyData.x._shape.remove();
+                if(keyData.x._growing) {
+                    keyData.x._shape = new Path.Line({
+                        from: [0,view.center.y],
+                        to: [keyData.x._point_x,view.center.y],
+                        strokeColor: "#be90d4",
+                        strokeWidth: view.size.height
+                    });
+                    keyData.x._shape.sendToBack();
+                    keyData.x._point_x += speed;
+                    if(keyData.x._point_x >= view.size.width+pause) {
+                        keyData.x._growing = false;
+                        keyData.x._point_x = 0;
+                    }
+                }
+                else {
+                    keyData.x._shape = new Path.Line({
+                        from: [keyData.x._point_x,view.center.y],
+                        to: [view.size.width,view.center.y],
+                        strokeColor: "#be90d4",
+                        strokeWidth: view.size.height
+                    });
+                    keyData.x._shape.sendToBack();
+                    keyData.x._point_x += speed;
+                    if(keyData.x._point_x >= view.size.width) {
+                        keyData.x._shape.remove();
+                        keyData.x._shape = null;
+                    }
+                }
+            }
         },
         sound: new Howl({
             src: ['sounds/wipe.mp3']
